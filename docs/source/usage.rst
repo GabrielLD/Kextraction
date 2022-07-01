@@ -57,7 +57,7 @@ Main script to run
     This is an image of the deformed checkerboard through a thin membrane floating over a water bath agitated by a shaker. 
 
 .. figure:: images/Champ_deformation_n40.png
-    :figwidth: 500px
+    :figwidth: 450px
     :align: center
 
     Measurement  at t = 40 seconds of the elevation of the surface of the membrane h(x,y,t).
