@@ -67,12 +67,11 @@ print('Saving....')
 
 
 from scipy.io import loadmat
-from display import set_size
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 c = loadmat(save_path + '/champ_demodule.mat')['output']
 
-fig, ax =plt.subplots(1,1, figsize = set_size(width = 400, subplots=(1,1)))
+fig, ax =plt.subplots(1,1)
 im = ax.pcolormesh(np.real(c))
 #plt.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
 ax.set_xlabel(r'$x$ (cm)')
@@ -90,9 +89,7 @@ from accum import accum
 
 x0 = 200
 y0 = 300
-step_ana = 1
-fitlength = 200
-m= 0
+
 phase_locale = np.ones((2*fitlength,2*fitlength))*np.exp(1j*np.angle(c[x0,y0]))
 signal_local=np.zeros(phase_locale.shape)
 signal_local[:,:] = np.real(c[x0-fitlength:x0+fitlength, y0-fitlength:y0+fitlength]*phase_locale)
@@ -112,24 +109,28 @@ def radialavg2(data, radial_step,x0,y0,m):
 
 [r2,zr2] = radialavg2(signal_local, 1, fitlength+1, fitlength+1, m)
 plt.plot(r2,zr2)
-]
+
 #%%
-[ny,nx] = c.shape
+[nx,ny] = c.shape
 cx = 0 
 pas = 1
 k2 = np.zeros((int((ny/fitlength)/step_ana), int((nx-fitlength)/step_ana)-1))
-for x0 in range(fitlength, nx-fitlength, step_ana):
+step_ana = 1
+fitlength = 6
+m= 0
+phase_locale = np.ones((2*fitlength,2*fitlength))
+signal_local = np.zeros(phase_locale.shape)
+for x0 in range(fitlength, nx-fitlength+1, step_ana):
     if np.mod(x0,60)==0:
-        print(str(np.round(x0*100/(nx-fitlength+1,0))+ ' %'))
+        print(str(np.round(x0*100/(nx-fitlength),0))+ ' % ')
     cy = 0
-    for y0 in range(fitlength, ny-fitlength, step_ana):
+    for y0 in range(fitlength, ny-fitlength+1, step_ana):
         phase_locale = np.ones((2*fitlength,2*fitlength))*np.exp(1j*np.angle(c[x0,y0]))
-        signal_local=np.zeros(phase_locale.shape)
-        signal_local[:,:] = np.real(c[x0-fitlength:x0+fitlength, y0-fitlength:y0+fitlength]*phase_locale)
+        signal_local = np.real(c[x0-fitlength:x0+fitlength, y0-fitlength:y0+fitlength]*phase_locale)
         [r2,zr2] = radialavg2(signal_local, 1, fitlength+1, fitlength+1, m)
-        xx = r2[1:fitlength]*pas
+        xx = r2[0:fitlength]*pas
         xx2 = np.concatenate((np.flipud(-xx),xx))
-        test = np.abs(zr2[1:fitlength])
+        test = np.abs(zr2[0:fitlength])
         test2 = np.concatenate((np.flipud(test),test))
         pp = np.polyfit(xx2,test2,deg=2)
         pp[0]=np.abs(pp[0])
@@ -139,14 +140,13 @@ for x0 in range(fitlength, nx-fitlength, step_ana):
     cx =+ 1
 print('done')
 
-#%%
+ #%%
 
-fig, ax = plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
-
+fig, ax = plt.subplots(1,1, figsize = (15,8))#set_size(width = 400, subplots = (1,1)))
 ax.pcolomesh(k2)
 
 
-#%%
+ #%%
 # def radialavg2(data, 1, radial_step, x0,y0, m):
 #     l = np.int(data.size/2)
-# %%
+ # %%
