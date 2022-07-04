@@ -42,7 +42,7 @@ Main script to run
     idef_collection= io.imread_collection(os.path.join(image_path, "Basler*.tiff"),plugin = "tifffile", conserve_memory=True) 
 
     # Computes the vertical displacement of the interface 
-    h = fcd_gld_hstar_series(idef_collection, carriers,alpha,hp,H, Nmax)
+    h = fcd_hstar_series(idef_collection, carriers,alpha,hp,H, Nmax)
 
 .. figure:: images/reference.png
     :figwidth: 300px
@@ -65,7 +65,4 @@ Main script to run
 .. note::
 
     blablalbla  
-
-
-
 

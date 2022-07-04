@@ -1,35 +1,56 @@
 Fast Checkerboard Demodulation functions
 ========================================
 
-Description 
------------
+Scripts used to compute the FCD
+-------------------------------
 
-Description of the functions used to compute the Fast Checkerboard Demodulation on Python
+.. note::
+    kaspervn a github users has developed the algorithms on python. 
+    https://github.com/kaspervn/pyfcd
+    We reuse most of his algorithms especially to compute the carrier function.
+    Then to comopute the gradient and levation of the interface we adapted the codes. 
 
-you can use the ``fcd.calculate_carriers()`` function:
+
+Calculate the carriers
+----------------------
 
 .. autofunction:: fcd.calculate_carriers
 
-.. code-block:: console
+.. note::
+     This function was written by kaspervn and calls to a bunch of other functions such as "find_peaks", "peaks" 
 
-    def calculate_carriers(i_ref):
-        peaks = find_peaks(i_ref)
-        peak_radius = np.linalg.norm(peaks[0] - peaks[1]) / 2
-        i_ref_fft = fft2(i_ref)
-        carriers = [Carrier(peak, pixel2kspace(i_ref.shape, peak), peak_radius, mask, ccsgn(i_ref_fft, mask)) for mask, peak
-                in
-                [(ifftshift(peak_mask(i_ref.shape, peak, peak_radius)), peak) for peak in peaks]]
-        return carriers
+
+Finding peaks in the fourrier space
+-----------------------------------
+
+you can use the ``find_peaks.find_peaks()`` function:
+
+.. autofunction:: find_peaks.find_peaks
+
+.. autofunction:: find_peaks.peaks
+
+.. autofunction:: kspace.pixel2kspace_func
+
+.. autofunction:: kspace.pixel2kspace
+
+
+Compute the slope of the interface
+----------------------------------
 
 you can use the ``fcd.gradientf()`` function:
 
 .. autofunction:: fcd.gradientf
 
 
+Compute the vertical displacement of the interface
+--------------------------------------------------
+
 you can use the ``fcd.fcd_hstar()`` function:
 
 .. autofunction:: fcd.fcd_hstar
 
+
+.. autofunction:: fft_inverse_gradient.fftinvgrad
 
 you can use the ``fcd.fcd_hstar_series()`` function :
 

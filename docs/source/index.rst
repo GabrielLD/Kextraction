@@ -33,4 +33,5 @@ Contents
 
    usage
    fonctionsfcd
+   api
 

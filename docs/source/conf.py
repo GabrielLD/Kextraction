@@ -13,7 +13,9 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import pathlib
+import sys
+sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
 # -- Project information -----------------------------------------------------
 
@@ -56,9 +58,11 @@ html_theme = 'furo'
 html_static_path = ['_static']
 
 extensions = [
-    'sphinx.ext.duration',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autodoc',
+   'sphinx.ext.duration',
+   'sphinx.ext.doctest',
+   'sphinx.ext.autodoc',
+   'sphinx.ext.autosummary',
 ]
+
 
 numpydoc_show_class_members = False
