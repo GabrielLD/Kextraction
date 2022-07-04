@@ -8,6 +8,9 @@ from kspace import pixel2kspace
 
 
 def peaks(img: array, thresshold, no_peaks, subpixel=False):
+    """
+    This function returns the coordinates of the peaks in the fourier space
+    """
     if subpixel:
         raise NotImplementedError()
 
@@ -31,6 +34,16 @@ def peaks(img: array, thresshold, no_peaks, subpixel=False):
 
 
 def find_peaks(img):
+    """
+    Compute the fourier transform of the image and find the peaks using the peaks function
+
+    :param: 
+        image : the image to be computed
+    
+    :return: 
+        position of the peaks
+
+    """
     i_fft = fftshift(np.abs(fft2(img - np.mean(img))))
 
     #TODO: optimize by doing calculating the radius in pixels, and use the disc function in skimage.draw, like in fcd.py:mask()

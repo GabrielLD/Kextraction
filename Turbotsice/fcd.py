@@ -17,6 +17,16 @@ from typing import List
 
 @dataclass
 class Carrier:
+    """
+    Defines the class carriers
+
+    :return: The parameters of the calculate carriers function listed in this class.
+            pixel_loc : position of the peaks
+            k_loc     : wave number
+            krad      : ]
+            mask      : if there is a mask
+            ccsgn 
+    """
     pixel_loc: np.array
     k_loc: np.array
     krad: np.float
@@ -38,16 +48,11 @@ def ccsgn(i_ref_fft, mask):
 ##
 def calculate_carriers(i_ref):
     """
-    
     Computes the carrier signal of the reference image
 
-    :param kind: Optional "kind" of ingredients.
-
-    :type kind: list[str] or None
-
-    :return: The ingredients list.
-
-    :rtype: list[str]
+    :param: i_ref is the image reference array. The reference image is a black and white image of the pattern through an interface at rest.  The image is loaded thanks to the skimage python library.
+    
+    :return: Returns a list of parameters such as : pixel_loc: np.array, k_loc: np.array, krad: np.float, mask: np.array, ccsgn: np.array.
     """
     
     peaks = find_peaks(i_ref)
@@ -65,13 +70,12 @@ def gradientf(i_def, carriers: List[Carrier]):
     """
     Return the slope of the interface between two images
 
-    :param kind: Optional "kind" of ingredients.
+    :param:
+        i_def is an image of the checkerboard pattern deformed by the flow.
+        carriers is the list of parameters returned by calculate_carriers function.
 
-    :type kind: list[str] or None
-
-    :return: The ingredients list.
-
-    :rtype: list[str]
+    :return:
+        It returns the (u,v) fields which correspond to the slopes of the interface in the horizontal and vertical direction.
     """
     i_def_fft = fft2(i_def)
     phis = [-np.angle(ifft2(i_def_fft * c.mask) * c.ccsgn) for c in carriers]
@@ -83,15 +87,17 @@ def gradientf(i_def, carriers: List[Carrier]):
 # Mesure de l'élévation entre une image déformée et la référence
 def fcd_hstar(i_def, carriers: List[Carrier], alpha, hp, H):
     """
-    Return the vertical displacement of the interface between two images
-    
-    :param kind: Optional "kind" of ingredients.
-    
-    :type kind: list[str] or None
-    
-    :return: The ingredients list.
-    
-    :rtype: list[str]
+    Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).
+
+    :param:
+        i_def is an image of the checkerboard pattern deformed by the flow.
+        carriers is the list of parameters returned by calculate_carriers function.
+        alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+        hp is the distance between the patter and the interface.
+        H is the distance between the interface and the lenses of the camera.
+
+    :return:
+        It returns the $h(x,y)$ vertical displacement of the interface.
     """
 
     i_def_fft = fft2(i_def)
@@ -109,15 +115,17 @@ def fcd_hstar(i_def, carriers: List[Carrier], alpha, hp, H):
 # Mesure de l'élévation entre une série d'images déformées et la référence
 def fcd_hstar_series(i_def, carriers: List[Carrier], alpha, hp, H, Nmax):
     """
-    Return the vertical displacement of the interface for an image_sequence
-    
-    :param kind: Optional "kind" of ingredients.
-    
-    :type kind: list[str] or None
-    
-    :return: The ingredients list.
-    
-    :rtype: list[str]
+    Return the vertical displacement between the reference image (i_ref) and a sequence iof deformed images (i_def).
+
+    :param:
+        i_def is an image of the checkerboard pattern deformed by the flow.
+        carriers is the list of parameters returned by calculate_carriers function.
+        alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+        hp is the distance between the patter and the interface.
+        H is the distance between the interface and the lenses of the camera.
+
+    :return:
+        It returns the $h(x,y,t)$ vertical displacement of the interface.
     """
 
     [dy, dx] = i_def[1].shape
