@@ -34,15 +34,49 @@ class Carrier:
     ccsgn: np.array
 
 def normalize_image(img):
+    """
+    Normalize the images
+    
+    :param: 
+        img : takes an image as argument
+    
+    :return: 
+        the image normalized
+    """
+    
     return (img - img.min()) / (img.max()-img.min())
 
 def peak_mask(shape, pos, r):
+    """
+    Normalize the images
+    
+    :param: 
+        shaoe : sizes of the reference image
+        pos   : location of peaks in the fourier space
+        r     : radius of the peaks
+
+    :return: 
+        result: Pixel coordinates of disk centered around the peaks.
+    """
+
     result = np.zeros(shape, dtype=np.bool8)
     result[disk(pos, r, shape=shape)] = True
     return result
 
 
 def ccsgn(i_ref_fft, mask):
+    """
+    If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space
+
+    :param: 
+        i_ref_fft: is the reference image in the fourier space
+        mask:  is the mask applied to the images
+
+    :return: 
+        Returns a an image with the mask.
+    """
+
+
     return np.conj(ifft2(i_ref_fft * mask))
 
 ##
@@ -50,9 +84,11 @@ def calculate_carriers(i_ref):
     """
     Computes the carrier signal of the reference image
 
-    :param: i_ref is the image reference array. The reference image is a black and white image of the pattern through an interface at rest.  The image is loaded thanks to the skimage python library.
+    :param:
+        i_ref is the image reference array. The reference image is a black and white image of the pattern through an interface at rest.  The image is loaded thanks to the skimage python library.
     
-    :return: Returns a list of parameters such as : pixel_loc: np.array, k_loc: np.array, krad: np.float, mask: np.array, ccsgn: np.array.
+    :return: 
+        Returns a list of parameters such as : pixel_loc: np.array, k_loc: np.array, krad: np.float, mask: np.array, ccsgn: np.array.
     """
     
     peaks = find_peaks(i_ref)
