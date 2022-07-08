@@ -30,6 +30,12 @@ Normalize the images
 .. autofunction:: fcd.normalize_image
 
 
+Find coordinates of the peaks in Fourier Space 
+----------------------------------------------
+
+.. autofunction:: fcd.peak_mask
+
+
 Finding peaks in the fourrier space
 -----------------------------------
 
