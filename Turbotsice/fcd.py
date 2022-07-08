@@ -51,7 +51,9 @@ def peak_mask(shape, pos, r):
     Normalize the images
     
     :param: 
-        shape : sizes of the reference image, pos   : location of peaks in the fourier space, r : radius of the peaks
+        shape : sizes of the reference image, 
+        pos   : location of peaks in the fourier space, 
+        r : radius of the peaks
 
     :return: 
         result: Pixel coordinates of disk centered around the peaks.
@@ -66,6 +68,10 @@ def ccsgn(i_ref_fft, mask):
     """
     If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space
 
+    :param: 
+        i_ref_fft : The Fourier Transform of the reference image;
+        mask : mask applied to the imagees.
+        
     :return: 
         Returns a an image with the mask.
     """
