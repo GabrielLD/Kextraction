@@ -45,7 +45,8 @@ Main script to run
 ------------------
 
 .. code-block:: console
-    #%% Compute the k field
+
+    # Compute the k field
     step = 1
     step_ana = 1
     fitlength = 30
