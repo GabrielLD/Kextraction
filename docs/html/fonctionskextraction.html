@@ -2,9 +2,12 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="#" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Some useful tools" href="tools.html" /><link rel="prev" title="Fast Checkerboard Demodulation functions" href="fonctionsfcd.html" />
 
-    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/><title>Search - Kextraction 1.0 documentation</title><link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
+        <title>Functions written to extract the local wavenumber from a 3D wavefield - Kextraction 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -145,17 +148,17 @@
   
   <span class="sidebar-brand-text">Kextraction 1.0 documentation</span>
   
-</a><form class="sidebar-search-container" method="get" action="#" role="search">
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html#computing-the-fcd">Computing the FCD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fonctionskextraction.html">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Some useful tools</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated/fcd.html">fcd</a></li>
@@ -200,25 +203,74 @@
           </label>
         </div>
         <article role="main">
-          
-<noscript>
-<div class="admonition error">
-  <p class="admonition-title">Error</p>
-  <p>
-    Please activate JavaScript to enable the search functionality.
-  </p>
+          <section id="functions-written-to-extract-the-local-wavenumber-from-a-3d-wavefield">
+<h1>Functions written to extract the local wavenumber from a 3D wavefield<a class="headerlink" href="#functions-written-to-extract-the-local-wavenumber-from-a-3d-wavefield" title="Permalink to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="radialavg2.radialavg2">
+<span class="sig-prename descclassname"><span class="pre">radialavg2.</span></span><span class="sig-name descname"><span class="pre">radialavg2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radial_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#radialavg2.radialavg2" title="Permalink to this definition">#</a></dt>
+<dd><p>Radialavg2 computes the average along the radius of a unit circle inscribed in the square matrix data. The radial average is returned in Zr and the mid-points of the M bins are returned in vector R.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>data :  data is the square matrix;</p></li>
+<li><p>radial_step: number of steps;</p></li>
+<li><p>x0, y0 : are the coordinates of the center of the circle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Tics : is the vector field of the mid points;</p></li>
+<li><p>Average : if the radial average vector.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">accum</span> <span class="kn">import</span> <span class="n">accum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fitlength</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phase_locale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">fitlength</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">fitlength</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal_local</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">phase_locale</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal_local</span><span class="p">[:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">x0</span><span class="o">-</span><span class="n">fitlength</span><span class="p">:</span><span class="n">x0</span><span class="o">+</span><span class="n">fitlength</span><span class="p">,</span> <span class="n">y0</span><span class="o">-</span><span class="n">fitlength</span><span class="p">:</span><span class="n">y0</span><span class="o">+</span><span class="n">fitlength</span><span class="p">]</span><span class="o">*</span><span class="n">phase_locale</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">r2</span><span class="p">,</span><span class="n">zr2</span><span class="p">]</span> <span class="o">=</span> <span class="n">radialavg2</span><span class="p">(</span><span class="n">signal_local</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fitlength</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">fitlength</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 </div>
-</noscript>
+</dd></dl>
 
-<div id="search-results"></div>
+<figure class="align-left" id="id1" style="width: 300px">
+<img alt="_images/reconstruction_bessel_radialavg_fitlength200pts.png" src="_images/reconstruction_bessel_radialavg_fitlength200pts.png" />
+<figcaption>
+<p><span class="caption-text">Reconstruction of the Bessel function thanks to radialavg2 function following the example given by the function.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="tools.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Some useful tools</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="fonctionsfcd.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Fast Checkerboard Demodulation functions</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -251,8 +303,5 @@
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
-    
-<script src="_static/searchtools.js"></script>
-<script src="_static/language_data.js"></script>
-<script src="searchindex.js"></script></body>
+    </body>
 </html>

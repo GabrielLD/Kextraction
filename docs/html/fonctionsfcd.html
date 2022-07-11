@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API" href="api.html" /><link rel="prev" title="Usage" href="usage.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Some useful tools" href="tools.html" /><link rel="prev" title="Usage" href="usage.html" />
 
     <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
         <title>Fast Checkerboard Demodulation functions - Kextraction 1.0 documentation</title>
@@ -158,6 +158,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html#computing-the-fcd">Computing the FCD</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Fast Checkerboard Demodulation functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Some useful tools</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated/fcd.html">fcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/find_peaks.html">find_peaks</a></li>
@@ -219,6 +220,22 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <p class="admonition-title">Note</p>
 <p>This functions were written by kaspervn and calls to a bunch of other functions such as “find_peaks”, “peaks”, “ccsgn”</p>
 </div>
+<dl class="py class">
+<dt class="sig sig-object py" id="fcd.Carrier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">Carrier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel_loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_loc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">krad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ccsgn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.Carrier" title="Permalink to this definition">#</a></dt>
+<dd><p>Defines the class carriers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The parameters of the calculate carriers function listed in this class.
+pixel_loc : position of the peaks
+k_loc     : wave number
+krad      : ]
+mask      : if there is a mask
+ccsgn</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="fcd.calculate_carriers">
 <span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">calculate_carriers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.calculate_carriers" title="Permalink to this definition">#</a></dt>
@@ -346,7 +363,7 @@ location  : coordnates in space</p>
 <p>you can use the <code class="docutils literal notranslate"><span class="pre">fcd.gradientf()</span></code> function:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="fcd.gradientf">
-<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">gradientf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Carrier</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.gradientf" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">gradientf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#fcd.Carrier" title="fcd.Carrier"><span class="pre">Carrier</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.gradientf" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the slope of the interface between two images</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
@@ -365,7 +382,7 @@ carriers is the list of parameters returned by calculate_carriers function.</p>
 <p>you can use the <code class="docutils literal notranslate"><span class="pre">fcd.fcd_hstar()</span></code> function:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="fcd.fcd_hstar">
-<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">fcd_hstar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Carrier</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.fcd_hstar" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">fcd_hstar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#fcd.Carrier" title="fcd.Carrier"><span class="pre">Carrier</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.fcd_hstar" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
@@ -401,7 +418,7 @@ fy : the vertical gradient.</p>
 <p>you can use the <code class="docutils literal notranslate"><span class="pre">fcd.fcd_hstar_series()</span></code> function :</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="fcd.fcd_hstar_series">
-<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">fcd_hstar_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Carrier</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.fcd_hstar_series" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">fcd_hstar_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_def</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carriers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#fcd.Carrier" title="fcd.Carrier"><span class="pre">Carrier</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.fcd_hstar_series" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a sequence iof deformed images (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
@@ -418,6 +435,26 @@ H is the distance between the interface and the lenses of the camera.</p>
 </dd></dl>
 
 </section>
+<section id="demodulation-of-a-signal">
+<h2>Demodulation of a signal<a class="headerlink" href="#demodulation-of-a-signal" title="Permalink to this heading">#</a></h2>
+<p>you can use the “demodulation.demodulation()” function to filter the signal at a given frequency:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="demodulation.demodulation">
+<span class="sig-prename descclassname"><span class="pre">demodulation.</span></span><span class="sig-name descname"><span class="pre">demodulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fexc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#demodulation.demodulation" title="Permalink to this definition">#</a></dt>
+<dd><p>This fonction is use to demodulate a signal a precise frequency 
+for example the vibrating frequency of a vibrating bath “fexc”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>t: is a temporal vector field
+s: is a 3D (X,Y,T) signal to be demodulated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>c : (X,Y) is a 2D complex field</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 
         </article>
@@ -425,12 +462,12 @@ H is the distance between the interface and the lenses of the camera.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="api.html">
+          <a class="next-page" href="tools.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">API</div>
+                <div class="title">Some useful tools</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -486,6 +523,7 @@ H is the distance between the interface and the lenses of the camera.</p>
 <li><a class="reference internal" href="#finding-peaks-in-the-fourrier-space">Finding peaks in the fourrier space</a></li>
 <li><a class="reference internal" href="#compute-the-slope-of-the-interface">Compute the slope of the interface</a></li>
 <li><a class="reference internal" href="#compute-the-vertical-displacement-of-the-interface">Compute the vertical displacement of the interface</a></li>
+<li><a class="reference internal" href="#demodulation-of-a-signal">Demodulation of a signal</a></li>
 </ul>
 </li>
 </ul>
