@@ -2,10 +2,12 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Introduction to the Kextraction algorithm" href="Kextraction.html" /><link rel="prev" title="Kextraction documentation" href="index.html" />
 
-    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/><title>Index - Kextraction 1.0 documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
+        <title>Introduction on the Fast Checkerboard Demodulation (FCD) - Kextraction 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -152,9 +154,9 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
-<li class="toctree-l1"><a class="reference internal" href="FCD.html">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FCD.html#computing-the-fcd">Computing the FCD</a></li>
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#computing-the-fcd">Computing the FCD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Kextraction.html">Introduction to the Kextraction algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
@@ -203,221 +205,83 @@
           </label>
         </div>
         <article role="main">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#T"><strong>T</strong></a></div>
+          <section id="introduction-on-the-fast-checkerboard-demodulation-fcd">
+<h1>Introduction on the Fast Checkerboard Demodulation (FCD)<a class="headerlink" href="#introduction-on-the-fast-checkerboard-demodulation-fcd" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Fast Checkerboard Demodulation is an algorithm developed by Sanders Wildeman
+<a class="reference external" href="https://link.springer.com/article/10.1007/s00348-018-2553-9">https://link.springer.com/article/10.1007/s00348-018-2553-9</a>
+It has been developed to be used in matlab.</p>
+<p>kaspervn a github users has started developing the algorithms on python.
+We use and adapt the codes to our liking</p>
+</div>
+<p>The Fast Checkerboard Demodulation consists in comparing the fourier transformed signal of a periodic pattern of a reference image to the image of the periodic pattern through a deformed interface. The ray of lights coming from the pattern are deviated by the curvature of the interface resulting on a deformed image of the pattern. By measuring the displacement of the pattern, one can measure the slope of the curvature of the interface. Hence, by integrating the slope, one can measure the vertical displacement of the surface.</p>
 </section>
-<section id="A" class="genindex-section">
-  <h2>A</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    accum
+<section id="computing-the-fcd">
+<h1>Computing the FCD<a class="headerlink" href="#computing-the-fcd" title="Permalink to this heading">#</a></h1>
+<section id="main-script-to-run">
+<h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">folderlist = glob.glob(Directory+&#39;/d&#39; + date + &#39;*&#39;) #experiments of day D</span>
+<span class="go">exec(open(Directory + &#39;/Params*.py&#39;).read()) # load parameters of the experiments performed</span>
 
-        <ul>
-          <li><a href="generated/accum.html#module-accum">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tools.html#accum.accum">accum() (in module accum)</a>
-</li>
-    </ul></td>
-  </tr></table>
+<span class="gp"># </span><span class="nb">read</span> the reference image called <span class="s1">&#39;Image_reference*.tiff&#39;</span>
+<span class="go">iref = io.imread_collection(os.path.join(image_path, &quot;Image_ref*.tiff&quot;),plugin = &quot;tifffile&quot;, conserve_memory=True)[0]; # image de reference</span>
+<span class="gp"># </span>Compute the fourier transform of the reference image of the regular pattern
+<span class="go">carriers = calculate_carriers(iref)</span>
+
+<span class="gp"># </span>Read the list of deformed images by the flow
+<span class="go">idef_collection= io.imread_collection(os.path.join(image_path, &quot;Basler*.tiff&quot;),plugin = &quot;tifffile&quot;, conserve_memory=True)</span>
+
+<span class="gp"># </span>Computes the vertical displacement of the interface
+<span class="go">h = fcd_hstar_series(idef_collection, carriers,alpha,hp,H, Nmax)</span>
+</pre></div>
+</div>
+<figure class="align-left" id="id1" style="width: 300px">
+<img alt="_images/reference.png" src="_images/reference.png" />
+<figcaption>
+<p><span class="caption-text">This is a reference image, where the membrane is floating over a water bath at rest.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id2" style="width: 300px">
+<img alt="_images/deformed.png" src="_images/deformed.png" />
+<figcaption>
+<p><span class="caption-text">This is an image of the deformed checkerboard through a thin membrane floating over a water bath agitated by a shaker.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3" style="width: 450px">
+<img alt="_images/Champ_deformation_n40.png" src="_images/Champ_deformation_n40.png" />
+<figcaption>
+<p><span class="caption-text">Measurement  at t = 40 seconds of the elevation of the surface of the membrane h(x,y,t).</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
-
-<section id="C" class="genindex-section">
-  <h2>C</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.calculate_carriers">calculate_carriers() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.Carrier">Carrier (class in fcd)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tools.html#tools.cart2pol">cart2pol() (in module tools)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.ccsgn">ccsgn() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="D" class="genindex-section">
-  <h2>D</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    demodulation
-
-        <ul>
-          <li><a href="generated/demodulation.html#module-demodulation">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#demodulation.demodulation">demodulation() (in module demodulation)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="F" class="genindex-section">
-  <h2>F</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    fcd
-
-        <ul>
-          <li><a href="generated/fcd.html#module-fcd">module</a>
-</li>
-        </ul></li>
-        <li><a href="fonctionsfcd.html#fcd.fcd_hstar">fcd_hstar() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.fcd_hstar_series">fcd_hstar_series() (in module fcd)</a>
-</li>
-        <li>
-    fft_inverse_gradient
-
-        <ul>
-          <li><a href="generated/fft_inverse_gradient.html#module-fft_inverse_gradient">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fft_inverse_gradient.fftinvgrad">fftinvgrad() (in module fft_inverse_gradient)</a>
-</li>
-        <li>
-    find_peaks
-
-        <ul>
-          <li><a href="generated/find_peaks.html#module-find_peaks">module</a>
-</li>
-        </ul></li>
-        <li><a href="fonctionsfcd.html#find_peaks.find_peaks">find_peaks() (in module find_peaks)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="G" class="genindex-section">
-  <h2>G</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.gradientf">gradientf() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="K" class="genindex-section">
-  <h2>K</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    kspace
-
-        <ul>
-          <li><a href="generated/kspace.html#module-kspace">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    module
-
-        <ul>
-          <li><a href="generated/accum.html#module-accum">accum</a>
-</li>
-          <li><a href="generated/demodulation.html#module-demodulation">demodulation</a>
-</li>
-          <li><a href="generated/fcd.html#module-fcd">fcd</a>
-</li>
-          <li><a href="generated/fft_inverse_gradient.html#module-fft_inverse_gradient">fft_inverse_gradient</a>
-</li>
-          <li><a href="generated/find_peaks.html#module-find_peaks">find_peaks</a>
-</li>
-          <li><a href="generated/kspace.html#module-kspace">kspace</a>
-</li>
-          <li><a href="generated/tools.html#module-tools">tools</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="N" class="genindex-section">
-  <h2>N</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.normalize_image">normalize_image() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="P" class="genindex-section">
-  <h2>P</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.peak_mask">peak_mask() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#find_peaks.peaks">peaks() (in module find_peaks)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#kspace.pixel2kspace">pixel2kspace() (in module kspace)</a>
-</li>
-        <li><a href="fonctionsfcd.html#kspace.pixel2kspace_func">pixel2kspace_func() (in module kspace)</a>
-</li>
-        <li><a href="tools.html#tools.pol2cart">pol2cart() (in module tools)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="R" class="genindex-section">
-  <h2>R</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionskextraction.html#radialavg2.radialavg2">radialavg2() (in module radialavg2)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="T" class="genindex-section">
-  <h2>T</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    tools
-
-        <ul>
-          <li><a href="generated/tools.html#module-tools">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="Kextraction.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Introduction to the Kextraction algorithm</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">

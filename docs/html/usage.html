@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Fast Checkerboard Demodulation functions" href="fonctionsfcd.html" /><link rel="prev" title="Kextraction documentation" href="index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Fast Checkerboard Demodulation functions" href="fonctionsfcd.html" /><link rel="prev" title="Introduction to the Kextraction algorithm" href="Kextraction.html" />
 
     <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
         <title>Usage - Kextraction 1.0 documentation</title>
@@ -155,9 +155,13 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="FCD.html">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FCD.html#computing-the-fcd">Computing the FCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Kextraction.html">Introduction to the Kextraction algorithm</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#computing-the-fcd">Computing the FCD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fonctionskextraction.html">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Some useful tools</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated/fcd.html">fcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/find_peaks.html">find_peaks</a></li>
@@ -208,57 +212,6 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
 <p>To use Kextraction, first download the file Kextractoin.zip:</p>
-</section>
-<section id="introduction-on-the-fast-checkerboard-demodulation-fcd">
-<h2>Introduction on the Fast Checkerboard Demodulation (FCD)<a class="headerlink" href="#introduction-on-the-fast-checkerboard-demodulation-fcd" title="Permalink to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Fast Checkerboard Demodulation is an algorithm developed by Sanders Wildeman
-<a class="reference external" href="https://link.springer.com/article/10.1007/s00348-018-2553-9">https://link.springer.com/article/10.1007/s00348-018-2553-9</a>
-It has been developed to be used in matlab.</p>
-<p>kaspervn a github users has started developing the algorithms on python.
-We use and adapt the codes to our liking</p>
-</div>
-<p>The Fast Checkerboard Demodulation consists in comparing the fourier transformed signal of a periodic pattern of a reference image to the image of the periodic pattern through a deformed interface. The ray of lights coming from the pattern are deviated by the curvature of the interface resulting on a deformed image of the pattern. By measuring the displacement of the pattern, one can measure the slope of the curvature of the interface. Hence, by integrating the slope, one can measure the vertical displacement of the surface.</p>
-</section>
-</section>
-<section id="computing-the-fcd">
-<h1>Computing the FCD<a class="headerlink" href="#computing-the-fcd" title="Permalink to this heading">#</a></h1>
-<section id="main-script-to-run">
-<h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">folderlist = glob.glob(Directory+&#39;/d&#39; + date + &#39;*&#39;) #experiments of day D</span>
-<span class="go">exec(open(Directory + &#39;/Params*.py&#39;).read()) # load parameters of the experiments performed</span>
-
-<span class="gp"># </span><span class="nb">read</span> the reference image called <span class="s1">&#39;Image_reference*.tiff&#39;</span>
-<span class="go">iref = io.imread_collection(os.path.join(image_path, &quot;Image_ref*.tiff&quot;),plugin = &quot;tifffile&quot;, conserve_memory=True)[0]; # image de reference</span>
-<span class="gp"># </span>Compute the fourier transform of the reference image of the regular pattern
-<span class="go">carriers = calculate_carriers(iref)</span>
-
-<span class="gp"># </span>Read the list of deformed images by the flow
-<span class="go">idef_collection= io.imread_collection(os.path.join(image_path, &quot;Basler*.tiff&quot;),plugin = &quot;tifffile&quot;, conserve_memory=True)</span>
-
-<span class="gp"># </span>Computes the vertical displacement of the interface
-<span class="go">h = fcd_hstar_series(idef_collection, carriers,alpha,hp,H, Nmax)</span>
-</pre></div>
-</div>
-<figure class="align-left" id="id1" style="width: 300px">
-<img alt="_images/reference.png" src="_images/reference.png" />
-<figcaption>
-<p><span class="caption-text">This is a reference image, where the membrane is floating over a water bath at rest.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-right" id="id2" style="width: 300px">
-<img alt="_images/deformed.png" src="_images/deformed.png" />
-<figcaption>
-<p><span class="caption-text">This is an image of the deformed checkerboard through a thin membrane floating over a water bath agitated by a shaker.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id3" style="width: 450px">
-<img alt="_images/Champ_deformation_n40.png" src="_images/Champ_deformation_n40.png" />
-<figcaption>
-<p><span class="caption-text">Measurement  at t = 40 seconds of the elevation of the surface of the membrane h(x,y,t).</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>blablalbla</p>
@@ -280,14 +233,14 @@ We use and adapt the codes to our liking</p>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
+          <a class="prev-page" href="Kextraction.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">Introduction to the Kextraction algorithm</div>
                 
               </div>
             </a>
@@ -325,11 +278,6 @@ We use and adapt the codes to our liking</p>
             <ul>
 <li><a class="reference internal" href="#">Usage</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#introduction-on-the-fast-checkerboard-demodulation-fcd">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#computing-the-fcd">Computing the FCD</a><ul>
-<li><a class="reference internal" href="#main-script-to-run">Main script to run</a></li>
 </ul>
 </li>
 </ul>

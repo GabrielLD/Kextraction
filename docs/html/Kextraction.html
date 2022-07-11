@@ -2,10 +2,12 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Usage" href="usage.html" /><link rel="prev" title="Introduction on the Fast Checkerboard Demodulation (FCD)" href="FCD.html" />
 
-    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/><title>Index - Kextraction 1.0 documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
+        <title>Introduction to the Kextraction algorithm - Kextraction 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -132,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -152,10 +154,10 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="FCD.html">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FCD.html#computing-the-fcd">Computing the FCD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Kextraction.html">Introduction to the Kextraction algorithm</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction to the Kextraction algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fonctionskextraction.html">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
@@ -197,227 +199,82 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          
-<section class="genindex-section">
-  <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#T"><strong>T</strong></a></div>
+          <section id="introduction-to-the-kextraction-algorithm">
+<h1>Introduction to the Kextraction algorithm<a class="headerlink" href="#introduction-to-the-kextraction-algorithm" title="Permalink to this heading">#</a></h1>
+<p>Here we describe a method based on the development of the solutions of a 2D linear wave propagation equation in a series of bessel functions.</p>
+<p>Let’s consider a wave propagating on a thin membrane, which can be described by the following dispersion relation:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/a2cd04b9c8012b5da78f62094b6a7828bddbf3f6.svg" alt="\omega^2 = gk + \frac{T}{\rho}k^3 + \frac{D}{\rho}k^5"/></p>
+</div></div>
+<p><img class="math" src="_images/math/16cb1e006199f0853a2dc67ea814446a38beb54e.svg" alt="\omega"/> is the pulsation of the propagative wave, <img class="math" src="_images/math/044fbdfdc70d3d33ffd9a6ffc1a2ed265bb0fa05.svg" alt="g=9.81 N\cdot m^{-1}"/> is the graviational acceleration, <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is the wavenumber associated to the wavelength throught the relation <img class="math" src="_images/math/34c6a3138d867989c45e09f41c3688971b10c11f.svg" alt="k\frac{2\pi}{\lambda}"/>. <img class="math" src="_images/math/e8dea8254118f111b5fb20895b03528c17566f06.svg" alt="T"/> is the tension. <img class="math" src="_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.svg" alt="D"/> is the flexural coefficient which depends on the Young modulus <img class="math" src="_images/math/1815f600df7845409443aed470eac2d449e4ddb0.svg" alt="E"/>, Poisson coefficient <img class="math" src="_images/math/14eb89266154200b9c81dcfc3bd058638fa221bf.svg" alt="\nu"/> and on the thickness of the membrane <img class="math" src="_images/math/4c120f773ab4e1c59ad2bd44aae969ce24dd190a.svg" alt="h"/>. These quantities are linked together through the following equation :</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/f40554a2bf7ee386c3bf6baa1bd9ab22f89b19d2.svg" alt="D = \frac{Eh^3}{12\left(1-\nu^2\right)}"/></p>
+</div></div>
+<p>Let’s note <img class="math" src="_images/math/f77fcfbb197c76b4778539c48379057f9d82f857.svg" alt="\eta(x, y, t)"/> the surface elevation of the membrane in the <img class="math" src="_images/math/1b08810e7de8a13493d7668d0ef354eb0a315cfa.svg" alt="(\mathcal{O},x, y)"/> along the time t. The Fourier transform <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> is a solution of the Healmholtz equation.</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/b789572df5f7ac84eb5de0cf09b8c9b2297e9a1b.svg" alt="\left(\Delta+k^2(\omega)\right)\hat{\eta} = 0\text{ avec }\hat{\eta}(x,y,\omega) = \displaystyle{\int}_{-\infty}^{+\infty}\eta(x,y,t){\rm e}^{i\omega t}dt`."/></p>
+</div></div>
+<p>Thanks to a corllary of the Graf theorem shows that the solutions of Helmholtz equation can be decomposed as a serie of Bessel functions centered aound a fixed point in space:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/9aef675469582f67a712073cb23d8390defc0396.svg" alt="\hat{\eta(r,\theta,\omega)} = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}"/></p>
+</div></div>
+<p>The integral of <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> along the orthoradial direction $theta$ on a cirlce of radius <img class="math" src="_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.svg" alt="R"/> gives:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/2b1b922517b7a15622ac813c48ebb4d020e9541a.svg" alt="I = \dfrac{1}{2\pi}\displaystyle{\oint_R}\hat{\eta}(R,\theta, \omega)d\theta
+  = \dfrac{1}{2\pi}\displaystyle{\oint_R}\displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}d\theta
+  = \displaystyle{\sum_{n=-\infty}^{+\infty}}\dfrac{1}{2\pi}\displaystyle{\oint_R}a_nJ_n(kr){\rm e}^{in\theta}d\theta."/></p>
+</div></div>
+<p>Then, two situations follow</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/da938bc9e62cf7b3a0d6e9664489f817c74e8fec.svg" alt="I = \frac{1}{2\pi}\displaystyle{\oint_R} a_nJ_n(kR){\rm e}^{in\theta}d\theta\text{ for } n \neq 0"/></p>
+</div></div>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/43c51073effa2634b057da741a104369e397f710.svg" alt="I = \frac{1}{2\pi}a_0J_0(kR) \text{ for } n=0"/></p>
+</div></div>
+<p>Experimentally, we measure the vertical displacement of the membrane thenaks to the FCD method. We measure <img class="math" src="_images/math/0e39eb9e11d3b1fe8c88f1b6b1998bd9307dcd89.svg" alt="\eta(x,y,t)"/>, which is then demodulated at the frequency of agitation of the membrane. From the complex demodulated field <img class="math" src="_images/math/1d5a5e25e3362e58c545e720544a19c71533b95b.svg" alt="\hat{\eta(x,y)}"/> from which we reconstruct the first order Bessel function <img class="math" src="_images/math/f4b4eec00612ebbd5d4087cfd286bd39f9682075.svg" alt="J_0"/> on each point of the space as a function of the radius. <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is measured by fitting a few number of points around the maximum of the function.</p>
+<section id="main-script-to-run">
+<h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="A" class="genindex-section">
-  <h2>A</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    accum
-
-        <ul>
-          <li><a href="generated/accum.html#module-accum">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tools.html#accum.accum">accum() (in module accum)</a>
-</li>
-    </ul></td>
-  </tr></table>
 </section>
-
-<section id="C" class="genindex-section">
-  <h2>C</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.calculate_carriers">calculate_carriers() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.Carrier">Carrier (class in fcd)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="tools.html#tools.cart2pol">cart2pol() (in module tools)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.ccsgn">ccsgn() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="D" class="genindex-section">
-  <h2>D</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    demodulation
-
-        <ul>
-          <li><a href="generated/demodulation.html#module-demodulation">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#demodulation.demodulation">demodulation() (in module demodulation)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="F" class="genindex-section">
-  <h2>F</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    fcd
-
-        <ul>
-          <li><a href="generated/fcd.html#module-fcd">module</a>
-</li>
-        </ul></li>
-        <li><a href="fonctionsfcd.html#fcd.fcd_hstar">fcd_hstar() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#fcd.fcd_hstar_series">fcd_hstar_series() (in module fcd)</a>
-</li>
-        <li>
-    fft_inverse_gradient
-
-        <ul>
-          <li><a href="generated/fft_inverse_gradient.html#module-fft_inverse_gradient">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fft_inverse_gradient.fftinvgrad">fftinvgrad() (in module fft_inverse_gradient)</a>
-</li>
-        <li>
-    find_peaks
-
-        <ul>
-          <li><a href="generated/find_peaks.html#module-find_peaks">module</a>
-</li>
-        </ul></li>
-        <li><a href="fonctionsfcd.html#find_peaks.find_peaks">find_peaks() (in module find_peaks)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="G" class="genindex-section">
-  <h2>G</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.gradientf">gradientf() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="K" class="genindex-section">
-  <h2>K</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    kspace
-
-        <ul>
-          <li><a href="generated/kspace.html#module-kspace">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="M" class="genindex-section">
-  <h2>M</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    module
-
-        <ul>
-          <li><a href="generated/accum.html#module-accum">accum</a>
-</li>
-          <li><a href="generated/demodulation.html#module-demodulation">demodulation</a>
-</li>
-          <li><a href="generated/fcd.html#module-fcd">fcd</a>
-</li>
-          <li><a href="generated/fft_inverse_gradient.html#module-fft_inverse_gradient">fft_inverse_gradient</a>
-</li>
-          <li><a href="generated/find_peaks.html#module-find_peaks">find_peaks</a>
-</li>
-          <li><a href="generated/kspace.html#module-kspace">kspace</a>
-</li>
-          <li><a href="generated/tools.html#module-tools">tools</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="N" class="genindex-section">
-  <h2>N</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.normalize_image">normalize_image() (in module fcd)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="P" class="genindex-section">
-  <h2>P</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#fcd.peak_mask">peak_mask() (in module fcd)</a>
-</li>
-        <li><a href="fonctionsfcd.html#find_peaks.peaks">peaks() (in module find_peaks)</a>
-</li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionsfcd.html#kspace.pixel2kspace">pixel2kspace() (in module kspace)</a>
-</li>
-        <li><a href="fonctionsfcd.html#kspace.pixel2kspace_func">pixel2kspace_func() (in module kspace)</a>
-</li>
-        <li><a href="tools.html#tools.pol2cart">pol2cart() (in module tools)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="R" class="genindex-section">
-  <h2>R</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="fonctionskextraction.html#radialavg2.radialavg2">radialavg2() (in module radialavg2)</a>
-</li>
-    </ul></td>
-  </tr></table>
-</section>
-
-<section id="T" class="genindex-section">
-  <h2>T</h2>
-  <table style="width: 100%" class="indextable genindextable"><tr>
-    <td style="width: 33%; vertical-align: top;"><ul>
-        <li>
-    tools
-
-        <ul>
-          <li><a href="generated/tools.html#module-tools">module</a>
-</li>
-        </ul></li>
-    </ul></td>
-  </tr></table>
-</section>
-
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="usage.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Usage</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="FCD.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Introduction on the Fast Checkerboard Demodulation (FCD)</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -438,8 +295,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Introduction to the Kextraction algorithm</a><ul>
+<li><a class="reference internal" href="#main-script-to-run">Main script to run</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
