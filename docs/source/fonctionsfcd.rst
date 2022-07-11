@@ -11,10 +11,14 @@ Scripts used to compute the FCD
     Then to comopute the gradient and levation of the interface we adapted the codes. 
 
 
+
+
 Calculate the carriers
 ----------------------
 .. note::
      This functions were written by kaspervn and calls to a bunch of other functions such as "find_peaks", "peaks", "ccsgn"
+
+.. autoclass:: fcd.Carrier 
 
 .. autofunction:: fcd.calculate_carriers
 
@@ -71,3 +75,10 @@ you can use the ``fcd.fcd_hstar()`` function:
 you can use the ``fcd.fcd_hstar_series()`` function :
 
 .. autofunction:: fcd.fcd_hstar_series 
+
+Demodulation of a signal
+------------------------
+
+you can use the "demodulation.demodulation()" function to filter the signal at a given frequency: 
+
+.. autofunction:: demodulation.demodulation

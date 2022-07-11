@@ -62,7 +62,13 @@ extensions = [
    'sphinx.ext.doctest',
    'sphinx.ext.autodoc',
    'sphinx.ext.autosummary',
+   'sphinx.ext.imgmath', 
 ]
 
-
+imgmath_image_format = 'svg'
 numpydoc_show_class_members = False
+
+# the documentation of the two following binaries
+# those paths works on Windows
+pngmath_latex=r"C:\texlive\2022\bin\win32\latex.exe"#
+pngmath_dvipng=r"C:\texlive\2022\bin\win32\dvipng.exe"

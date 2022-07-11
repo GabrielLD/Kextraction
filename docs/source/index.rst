@@ -30,8 +30,11 @@ Contents
 --------
 
 .. toctree::
-
+   FCD
+   Kextraction
    usage
    fonctionsfcd
+   fonctionskextraction
+   tools
    api
 
