@@ -168,6 +168,8 @@
 <li class="toctree-l2"><a class="reference internal" href="generated/kspace.html">kspace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/fft_inverse_gradient.html">fft_inverse_gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/demodulation.html">demodulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/kextraction.html">kextraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/radialavg2.html">radialavg2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/tools.html">tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/accum.html">accum</a></li>
 </ul>
@@ -229,12 +231,17 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <dd><p>Defines the class carriers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The parameters of the calculate carriers function listed in this class.
-pixel_loc : position of the peaks
-k_loc     : wave number
-krad      : ]
-mask      : if there is a mask
-ccsgn</p>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>The parameters of the calculate carriers function listed in this class.</dt><dd><ul class="simple">
+<li><p>pixel_loc : position of the peaks</p></li>
+<li><p>k_loc     : wave number</p></li>
+<li><p>krad      : ]</p></li>
+<li><p>mask      : if there is a mask</p></li>
+<li><p>ccsgn</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -262,8 +269,10 @@ ccsgn</p>
 <dd><p>If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>i_ref_fft : The Fourier Transform of the reference image;
-mask : mask applied to the imagees.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>i_ref_fft : The Fourier Transform of the reference image;</p></li>
+<li><p>mask : mask applied to the imagees.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Returns a an image with the mask.</p>
@@ -297,9 +306,11 @@ mask : mask applied to the imagees.</p>
 <dd><p>Normalize the images</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>shape : sizes of the reference image, 
-pos   : location of peaks in the fourier space, 
-r : radius of the peaks</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>shape : sizes of the reference image,</p></li>
+<li><p>pos   : location of peaks in the fourier space,</p></li>
+<li><p>r : radius of the peaks</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>result: Pixel coordinates of disk centered around the peaks.</p>
@@ -337,7 +348,9 @@ r : radius of the peaks</p>
 <dd><p>Measure the wave length of the fourier transform of the image</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>img_shape : is the shape of the fourier transformed image</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>img_shape : is the shape of the fourier transformed image</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the wavelength</p>
@@ -351,8 +364,10 @@ r : radius of the peaks</p>
 <dd><p>Returns the wavelength of the peak in a neighbouring region</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>img_shape : is the shape of the fourier transform image
-location  : coordnates in space</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>img_shape : is the shape of the fourier transform image</p></li>
+<li><p>location  : coordnates in space</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the wavelength and position</p>
@@ -370,8 +385,10 @@ location  : coordnates in space</p>
 <dd><p>Return the slope of the interface between two images</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
-carriers is the list of parameters returned by calculate_carriers function.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
+<li><p>carriers is the list of parameters returned by * calculate_carriers function.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the (u,v) fields which correspond to the slopes of the interface in the horizontal and vertical direction.</p>
@@ -389,11 +406,13 @@ carriers is the list of parameters returned by calculate_carriers function.</p>
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
-carriers is the list of parameters returned by calculate_carriers function.
-alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
-hp is the distance between the patter and the interface.
-H is the distance between the interface and the lenses of the camera.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
+<li><p>carriers is the list of parameters returned by calculate_carriers function.</p></li>
+<li><p>alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).</p></li>
+<li><p>hp is the distance between the patter and the interface.</p></li>
+<li><p>H is the distance between the interface and the lenses of the camera.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the $h(x,y)$ vertical displacement of the interface.</p>
@@ -409,8 +428,10 @@ H is the distance between the interface and the lenses of the camera.</p>
 Huhn, et al. Exp Fluids (2016), 57, 151, <a class="reference external" href="https://doi.org/10.1007/s00348-016-2236-3">https://doi.org/10.1007/s00348-016-2236-3</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>fx : the horizontal gradient or the slope.
-fy : the vertical gradient.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>fx : the horizontal gradient or the slope.</p></li>
+<li><p>fy : the vertical gradient.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>f : the integral of the gradient.</p>
@@ -425,11 +446,13 @@ fy : the vertical gradient.</p>
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a sequence iof deformed images (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
-carriers is the list of parameters returned by calculate_carriers function.
-alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
-hp is the distance between the patter and the interface.
-H is the distance between the interface and the lenses of the camera.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
+<li><p>carriers is the list of parameters returned by calculate_carriers function.</p></li>
+<li><p>alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).</p></li>
+<li><p>hp is the distance between the patter and the interface.</p></li>
+<li><p>H is the distance between the interface and the lenses of the camera.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the $h(x,y,t)$ vertical displacement of the interface.</p>
@@ -448,8 +471,10 @@ H is the distance between the interface and the lenses of the camera.</p>
 for example the vibrating frequency of a vibrating bath “fexc”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>t: is a temporal vector field
-s: is a 3D (X,Y,T) signal to be demodulated</p>
+<dd class="field-odd"><ul class="simple">
+<li><p>t: is a temporal vector field</p></li>
+<li><p>s: is a 3D (X,Y,T) signal to be demodulated</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>c : (X,Y) is a 2D complex field</p>

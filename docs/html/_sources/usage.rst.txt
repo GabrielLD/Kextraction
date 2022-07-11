@@ -1,16 +1,21 @@
 Usage 
 =====
-# For example, to reference the “Installation” subsection, add a label right before the heading, as follows:
-.. _installation:
 
 Installation
 ------------
 
-To use Kextraction, first download the file Kextractoin.zip:
+* 1. To use Kextraction, first download the file Kextractoin.zip in the github or download it through the GitHub Desktop application.'
 
+* 2. Start your pref terminal 
 
+* 3.  install the library  in the Turbotsice folder by running : 
 
-.. note::
+.. code-block:: console
 
-    blablalbla  
+    >>> python setup.py
+
+* 4. To test the code you can then open the file SingleKextraction.py file
+
+which is an example on how to run the full program with the different steps described.
+
 

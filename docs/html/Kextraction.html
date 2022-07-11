@@ -247,6 +247,14 @@
 <p>Experimentally, we measure the vertical displacement of the membrane thenaks to the FCD method. We measure <img class="math" src="_images/math/0e39eb9e11d3b1fe8c88f1b6b1998bd9307dcd89.svg" alt="\eta(x,y,t)"/>, which is then demodulated at the frequency of agitation of the membrane. From the complex demodulated field <img class="math" src="_images/math/1d5a5e25e3362e58c545e720544a19c71533b95b.svg" alt="\hat{\eta(x,y)}"/> from which we reconstruct the first order Bessel function <img class="math" src="_images/math/f4b4eec00612ebbd5d4087cfd286bd39f9682075.svg" alt="J_0"/> on each point of the space as a function of the radius. <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is measured by fitting a few number of points around the maximum of the function.</p>
 <section id="main-script-to-run">
 <h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Compute the k field
+<span class="go">step = 1</span>
+<span class="go">step_ana = 1</span>
+<span class="go">fitlength = 30</span>
+<span class="go">kfield  = kextraction(c, fitlength, step_ana, step)</span>
+<span class="go">print(&#39;done&#39;)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
