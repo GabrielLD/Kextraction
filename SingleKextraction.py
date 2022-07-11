@@ -2,6 +2,8 @@
 import numpy as np
 import glob
 import pickle
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from skimage import io
 from tools import cart2pol
 
@@ -64,13 +66,6 @@ print('Saving....')
 #save_deformation_field(c, save_path, filename = "\champ_deformation_detrend_demodulated_hxy_complexe_moyenne_sur_t")
 
 #%%
-
-
-from scipy.io import loadmat
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-c = loadmat(save_path + '/champ_demodule.mat')['output']
-
 fig, ax =plt.subplots(1,1)
 im = ax.pcolormesh(np.real(c))
 #plt.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
