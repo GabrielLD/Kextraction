@@ -11,7 +11,8 @@ def pixel2kspace_func(img_shape):
     Measure the wave length of the fourier transform of the image
 
 
-    :param: img_shape : is the shape of the fourier transformed image
+    :param: 
+        * img_shape : is the shape of the fourier transformed image
 
     :return: the wavelength
 
@@ -26,8 +27,8 @@ def pixel2kspace(img_shape, location):
     Returns the wavelength of the peak in a neighbouring region 
 
     :param: 
-        img_shape : is the shape of the fourier transform image
-        location  : coordnates in space
+        * img_shape : is the shape of the fourier transform image
+        * location  : coordnates in space
     :return: 
         the wavelength and position
     """

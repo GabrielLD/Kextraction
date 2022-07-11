@@ -20,12 +20,13 @@ class Carrier:
     """
     Defines the class carriers
 
-    :return: The parameters of the calculate carriers function listed in this class.
-            pixel_loc : position of the peaks
-            k_loc     : wave number
-            krad      : ]
-            mask      : if there is a mask
-            ccsgn 
+    :return: 
+    The parameters of the calculate carriers function listed in this class.
+        * pixel_loc : position of the peaks
+        * k_loc     : wave number
+        * krad      : ]
+        * mask      : if there is a mask
+        * ccsgn 
     """
     pixel_loc: np.array
     k_loc: np.array
@@ -51,9 +52,9 @@ def peak_mask(shape, pos, r):
     Normalize the images
     
     :param: 
-        shape : sizes of the reference image, 
-        pos   : location of peaks in the fourier space, 
-        r : radius of the peaks
+        * shape : sizes of the reference image, 
+        * pos   : location of peaks in the fourier space, 
+        * r : radius of the peaks
 
     :return: 
         result: Pixel coordinates of disk centered around the peaks.
@@ -69,8 +70,8 @@ def ccsgn(i_ref_fft, mask):
     If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space
 
     :param: 
-        i_ref_fft : The Fourier Transform of the reference image;
-        mask : mask applied to the imagees.
+        * i_ref_fft : The Fourier Transform of the reference image;
+        * mask : mask applied to the imagees.
         
     :return: 
         Returns a an image with the mask.
@@ -106,8 +107,8 @@ def gradientf(i_def, carriers: List[Carrier]):
     Return the slope of the interface between two images
 
     :param:
-        i_def is an image of the checkerboard pattern deformed by the flow.
-        carriers is the list of parameters returned by calculate_carriers function.
+        * i_def is an image of the checkerboard pattern deformed by the flow.
+        * carriers is the list of parameters returned by * calculate_carriers function.
 
     :return:
         It returns the (u,v) fields which correspond to the slopes of the interface in the horizontal and vertical direction.
@@ -125,11 +126,11 @@ def fcd_hstar(i_def, carriers: List[Carrier], alpha, hp, H):
     Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).
 
     :param:
-        i_def is an image of the checkerboard pattern deformed by the flow.
-        carriers is the list of parameters returned by calculate_carriers function.
-        alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
-        hp is the distance between the patter and the interface.
-        H is the distance between the interface and the lenses of the camera.
+        * i_def is an image of the checkerboard pattern deformed by the flow.
+        * carriers is the list of parameters returned by calculate_carriers function.
+        * alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+        * hp is the distance between the patter and the interface.
+        * H is the distance between the interface and the lenses of the camera.
 
     :return:
         It returns the $h(x,y)$ vertical displacement of the interface.
@@ -153,11 +154,11 @@ def fcd_hstar_series(i_def, carriers: List[Carrier], alpha, hp, H, Nmax):
     Return the vertical displacement between the reference image (i_ref) and a sequence iof deformed images (i_def).
 
     :param:
-        i_def is an image of the checkerboard pattern deformed by the flow.
-        carriers is the list of parameters returned by calculate_carriers function.
-        alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
-        hp is the distance between the patter and the interface.
-        H is the distance between the interface and the lenses of the camera.
+        * i_def is an image of the checkerboard pattern deformed by the flow.
+        * carriers is the list of parameters returned by calculate_carriers function.
+        * alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+        * hp is the distance between the patter and the interface.
+        * H is the distance between the interface and the lenses of the camera.
 
     :return:
         It returns the $h(x,y,t)$ vertical displacement of the interface.

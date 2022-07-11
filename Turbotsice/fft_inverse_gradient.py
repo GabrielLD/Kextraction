@@ -11,8 +11,8 @@ def fftinvgrad(fx, fy):
     Huhn, et al. Exp Fluids (2016), 57, 151, https://doi.org/10.1007/s00348-016-2236-3
 
     :param: 
-        fx : the horizontal gradient or the slope.
-        fy : the vertical gradient.
+        * fx : the horizontal gradient or the slope.
+        * fy : the vertical gradient.
     :return: 
         f : the integral of the gradient. 
     """

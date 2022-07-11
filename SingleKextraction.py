@@ -90,21 +90,11 @@ ax.set_aspect('equal', 'box')
 plt.tight_layout()
 #plt.savefig('./docs/source/images/Champ_deformation_n40.png', dpi = 300)
 
-#%%
-pas = 1
+#%% Compute the k field
 step_ana = 1
 fitlength = 30
-kfield  = kextraction(c, fitlength, step_ana, step)
-
+kfield  = kextraction(c, fitlength, step_ana)
 print('done')
-
- #%%
-
+#%%
 fig, ax = plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
 ax.pcolomesh(k2)
-
-
- #%%
-# def radialavg2(data, 1, radial_step, x0,y0, m):
-#     l = np.int(data.size/2)
- # %%

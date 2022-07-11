@@ -7,8 +7,8 @@ def demodulation(t,s, fexc):
     for example the vibrating frequency of a vibrating bath "fexc"
 
     :param: 
-        t: is a temporal vector field
-        s: is a 3D (X,Y,T) signal to be demodulated 
+        * t: is a temporal vector field
+        * s: is a 3D (X,Y,T) signal to be demodulated 
 
     :return: 
         c : (X,Y) is a 2D complex field 
