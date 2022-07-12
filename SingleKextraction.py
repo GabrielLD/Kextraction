@@ -73,8 +73,8 @@ print('Saving....')
 #%%
 
 # if the demodulated field exist already
-from scipy.io import loadmat
-c = loadmat(save_path + '/champ_demodule.mat')['output']
+#from scipy.io import loadmat
+#c = loadmat(save_path + '/champ_demodule.mat')['output']
 
 #%%
 fig, ax =plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
@@ -104,3 +104,4 @@ im = ax.pcolormesh(kfield, vmax =.2)
 cbar = fig.colorbar(im, fraction=0.0375, pad=0.02)
 
 
+ 
