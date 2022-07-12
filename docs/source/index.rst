@@ -27,6 +27,8 @@ Here are project's authors and contributors:
 
 * Dr. Stéphane Perrard  (CNRS researcher) <stephane.perrard@espci.fr>
 
+* Pablo Poulenard       (Licence 2 internship student) <pablo.poulenard@psl.eu>
+
 * Mina Jafari           (Master 1 internship student) <mina.jafariii@yahoo.fr>
 
 * Baptiste Auvity       (PhD student) <baptiste.auvity@espci.fr>
