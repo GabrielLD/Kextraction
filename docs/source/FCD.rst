@@ -2,12 +2,8 @@ Introduction on the Fast Checkerboard Demodulation (FCD)
 ========================================================
 
 .. note::
-    The Fast Checkerboard Demodulation is an algorithm developed by Sanders Wildeman
-    https://link.springer.com/article/10.1007/s00348-018-2553-9
+    The Fast Checkerboard Demodulation is an algorithm developed by Sanders Wildeman [Wildeman 2018]
     It has been developed to be used in matlab. 
-    
-    kaspervn a github users has started developing the algorithms on python. 
-    We use and adapt the codes to our liking
 
 The Fast Checkerboard Demodulation consists in comparing the fourier transformed signal of a periodic pattern of a reference image to the image of the periodic pattern through a deformed interface. The ray of lights coming from the pattern are deviated by the curvature of the interface resulting on a deformed image of the pattern. By measuring the displacement of the pattern, one can measure the slope of the curvature of the interface. Hence, by integrating the slope, one can measure the vertical displacement of the surface.
 

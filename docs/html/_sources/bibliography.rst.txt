@@ -1,0 +1,8 @@
+Bibliography 
+============
+
+.. [Wildeman2018] S. Wildeman. Real-time quantitative Schlieren imaging by fast Fourier demodulation of a checkered backdrop In: Experiments in Fluids Vol.59 p.97;
+
+.. [Przadka2013] A. Przadka, P. Petitjeans, V. Pagneux, A. Maurel, and R. K. Ing. Underwater depth reconstruction by local water wave measurements. In: Applied Physics Letters, 103(14) :144105, September 2013;
+
+.. [kaspervn]  https://github.com/kaspervn/pyfcd.

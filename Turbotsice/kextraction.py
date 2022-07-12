@@ -47,3 +47,4 @@ def kextraction(data, fitlength, step_ana):
             k2[cy,cx]=np.sqrt(4*pp[0]/pp[2])
             cy=+1
         cx =+ 1
+    return k2
