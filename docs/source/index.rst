@@ -21,7 +21,8 @@ Kextraction documentation
 .. note::
    * This documentation is written by using sphinx tools for python code documentation. 
    * The codes are written in Python
-   
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
