@@ -155,15 +155,21 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../FCD.html">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FCD.html#computing-the-fcd">Computing the FCD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Kextraction.html">Introduction to the Kextraction algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage.html#computing-the-fcd">Computing the FCD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fonctionskextraction.html">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Some useful tools</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../api.html">API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">fcd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="find_peaks.html">find_peaks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kspace.html">kspace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fft_inverse_gradient.html">fft_inverse_gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="demodulation.html">demodulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kextraction.html">kextraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="radialavg2.html">radialavg2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html">tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accum.html">accum</a></li>
 </ul>
@@ -215,7 +221,7 @@
 <td><p>Computes the carrier signal of the reference image</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../fonctionsfcd.html#fcd.ccsgn" title="fcd.ccsgn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ccsgn</span></code></a>(i_ref_fft, mask)</p></td>
-<td><p></p></td>
+<td><p>If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../fonctionsfcd.html#fcd.fcd_hstar" title="fcd.fcd_hstar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fcd_hstar</span></code></a>(i_def, carriers, alpha, hp, H)</p></td>
 <td><p>Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).</p></td>
@@ -227,10 +233,10 @@
 <td><p>Return the slope of the interface between two images</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../fonctionsfcd.html#fcd.normalize_image" title="fcd.normalize_image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_image</span></code></a>(img)</p></td>
-<td><p></p></td>
+<td><p>Normalize the images</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../fonctionsfcd.html#fcd.peak_mask" title="fcd.peak_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peak_mask</span></code></a>(shape, pos, r)</p></td>
-<td><p></p></td>
+<td><p>Normalize the images</p></td>
 </tr>
 </tbody>
 </table>

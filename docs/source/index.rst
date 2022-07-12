@@ -6,17 +6,28 @@
 Kextraction documentation
 =======================================
 
-   This project is under active development at the laboratoire Physique des Matériaux et Milieux Hétérogènes (PMMH) at ESPCI.
-   The TURBOTS team IS responsible for this work. Dr. Antonin Eddi (CNRS researcher) Dr. Stéphane Perrard (CNRS researcher) are leading this project with the help of Mina Jafari (Master 1 intern student), Baptiste Auvity (Master 2 intern student and future PhD in the group) and Gabriel Le Doudic (Post-Doc).
-   
+   This project is under active development.
    This codes have been under development with the aim to help study the wave interaction and frature of the MIZ in the arctic pole.
    It offers the opportunity to extract the local wavenumber k from a 2D field of waves propagating on a medium. 
-   
-   
    
    * To use this project, check out the :doc:`usage` section for further information.
    * Some information on the algorithm of Fast Checkerboard Demodulation are available in :doc:`FCD`
    * To learn how to use the extraction of k, check out the :doc:`kextraction` section.
+
+   
+########################
+Authors and contributors
+########################
+
+
+This project is under active development at the laboratoire Physique des Matériaux et Milieux Hétérogènes (PMMH) at ESPCI.
+Here are project's authors and contributors:
+* Dr. Antonin Eddi      (CNRS researcher)
+* Dr. Stéphane Perrard  (CNRS researcher)
+* Mina Jafari           (Master 1 internship student)
+* Baptiste Auvity       (PhD student)
+* Dr. Gabriel Le Doudic (Post-Doc at CNRS)
+* TURBOTS team of PMMH
 
 .. note::
    * This documentation is written by using sphinx tools for python code documentation. 
