@@ -22,11 +22,17 @@ Authors and contributors
 
 This project is under active development at the laboratoire Physique des Matériaux et Milieux Hétérogènes (PMMH) at ESPCI.
 Here are project's authors and contributors:
+
 * Dr. Antonin Eddi      (CNRS researcher)
+
 * Dr. Stéphane Perrard  (CNRS researcher)
+
 * Mina Jafari           (Master 1 internship student)
+
 * Baptiste Auvity       (PhD student)
+
 * Dr. Gabriel Le Doudic (Post-Doc at CNRS)
+
 * TURBOTS team of PMMH
 
 .. note::
