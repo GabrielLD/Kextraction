@@ -6,12 +6,11 @@
 Kextraction documentation
 =======================================
 
-.. note::
-
    This project is under active development at the laboratoire Physique des Matériaux et Milieux Hétérogènes (PMMH) at ESPCI.
    The TURBOTS team IS responsible for this work. Dr. Antonin Eddi (CNRS researcher) Dr. Stéphane Perrard (CNRS researcher) are leading this project with the help of Mina Jafari (Master 1 intern student), Baptiste Auvity (Master 2 intern student and future PhD in the group) and Gabriel Le Doudic (Post-Doc).
    
-   This codes have been under development with the aim to help study the wave interaction and frature of the MIZ in the arctic pole.  
+   This codes have been under development with the aim to help study the wave interaction and frature of the MIZ in the arctic pole.
+   It offers the opportunity to extract the local wavenumber k from a 2D field of waves propagating on a medium. 
    
    
    
@@ -19,6 +18,10 @@ Kextraction documentation
    * Some information on the algorithm of Fast Checkerboard Demodulation are available in :doc:`FCD`
    * To learn how to use the extraction of k, check out the :doc:`kextraction` section.
 
+.. note::
+   * This documentation is written by using sphinx tools for python code documentation. 
+   * The codes are written in Python
+   
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -28,7 +31,6 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`
 
 
 
