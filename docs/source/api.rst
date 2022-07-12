@@ -9,5 +9,7 @@ API
     kspace
     fft_inverse_gradient
     demodulation
+    kextraction
+    radialavg2
     tools
     accum

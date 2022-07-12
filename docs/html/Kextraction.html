@@ -1,0 +1,338 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Usage" href="usage.html" /><link rel="prev" title="Introduction on the Fast Checkerboard Demodulation (FCD)" href="FCD.html" />
+
+    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
+        <title>Introduction to the Kextraction algorithm - Kextraction 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Kextraction 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Kextraction 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="FCD.html">Introduction on the Fast Checkerboard Demodulation (FCD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FCD.html#computing-the-fcd">Computing the FCD</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Introduction to the Kextraction algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fonctionsfcd.html">Fast Checkerboard Demodulation functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fonctionskextraction.html">Functions written to extract the local wavenumber from a 3D wavefield</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Some useful tools</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/fcd.html">fcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/find_peaks.html">find_peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/kspace.html">kspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/fft_inverse_gradient.html">fft_inverse_gradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/demodulation.html">demodulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/tools.html">tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/accum.html">accum</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="introduction-to-the-kextraction-algorithm">
+<h1>Introduction to the Kextraction algorithm<a class="headerlink" href="#introduction-to-the-kextraction-algorithm" title="Permalink to this heading">#</a></h1>
+<p>Here we describe a method based on the development of the solutions of a 2D linear wave propagation equation in a series of bessel functions.</p>
+<p>Let’s consider a wave propagating on a thin membrane, which can be described by the following dispersion relation:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/a2cd04b9c8012b5da78f62094b6a7828bddbf3f6.svg" alt="\omega^2 = gk + \frac{T}{\rho}k^3 + \frac{D}{\rho}k^5"/></p>
+</div></div>
+<p><img class="math" src="_images/math/16cb1e006199f0853a2dc67ea814446a38beb54e.svg" alt="\omega"/> is the pulsation of the propagative wave, <img class="math" src="_images/math/044fbdfdc70d3d33ffd9a6ffc1a2ed265bb0fa05.svg" alt="g=9.81 N\cdot m^{-1}"/> is the graviational acceleration, <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is the wavenumber associated to the wavelength throught the relation <img class="math" src="_images/math/34c6a3138d867989c45e09f41c3688971b10c11f.svg" alt="k\frac{2\pi}{\lambda}"/>. <img class="math" src="_images/math/e8dea8254118f111b5fb20895b03528c17566f06.svg" alt="T"/> is the tension. <img class="math" src="_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.svg" alt="D"/> is the flexural coefficient which depends on the Young modulus <img class="math" src="_images/math/1815f600df7845409443aed470eac2d449e4ddb0.svg" alt="E"/>, Poisson coefficient <img class="math" src="_images/math/14eb89266154200b9c81dcfc3bd058638fa221bf.svg" alt="\nu"/> and on the thickness of the membrane <img class="math" src="_images/math/4c120f773ab4e1c59ad2bd44aae969ce24dd190a.svg" alt="h"/>. These quantities are linked together through the following equation :</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/f40554a2bf7ee386c3bf6baa1bd9ab22f89b19d2.svg" alt="D = \frac{Eh^3}{12\left(1-\nu^2\right)}"/></p>
+</div></div>
+<p>Let’s note <img class="math" src="_images/math/f77fcfbb197c76b4778539c48379057f9d82f857.svg" alt="\eta(x, y, t)"/> the surface elevation of the membrane in the <img class="math" src="_images/math/1b08810e7de8a13493d7668d0ef354eb0a315cfa.svg" alt="(\mathcal{O},x, y)"/> along the time t. The Fourier transform <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> is a solution of the Healmholtz equation.</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/b789572df5f7ac84eb5de0cf09b8c9b2297e9a1b.svg" alt="\left(\Delta+k^2(\omega)\right)\hat{\eta} = 0\text{ avec }\hat{\eta}(x,y,\omega) = \displaystyle{\int}_{-\infty}^{+\infty}\eta(x,y,t){\rm e}^{i\omega t}dt`."/></p>
+</div></div>
+<p>Thanks to a corllary of the Graf theorem shows that the solutions of Helmholtz equation can be decomposed as a serie of Bessel functions centered aound a fixed point in space:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/9aef675469582f67a712073cb23d8390defc0396.svg" alt="\hat{\eta(r,\theta,\omega)} = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}"/></p>
+</div></div>
+<p>The integral of <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> along the orthoradial direction $theta$ on a cirlce of radius <img class="math" src="_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.svg" alt="R"/> gives:</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/2b1b922517b7a15622ac813c48ebb4d020e9541a.svg" alt="I = \dfrac{1}{2\pi}\displaystyle{\oint_R}\hat{\eta}(R,\theta, \omega)d\theta
+  = \dfrac{1}{2\pi}\displaystyle{\oint_R}\displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}d\theta
+  = \displaystyle{\sum_{n=-\infty}^{+\infty}}\dfrac{1}{2\pi}\displaystyle{\oint_R}a_nJ_n(kr){\rm e}^{in\theta}d\theta."/></p>
+</div></div>
+<p>Then, two situations follow</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/da938bc9e62cf7b3a0d6e9664489f817c74e8fec.svg" alt="I = \frac{1}{2\pi}\displaystyle{\oint_R} a_nJ_n(kR){\rm e}^{in\theta}d\theta\text{ for } n \neq 0"/></p>
+</div></div>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/43c51073effa2634b057da741a104369e397f710.svg" alt="I = \frac{1}{2\pi}a_0J_0(kR) \text{ for } n=0"/></p>
+</div></div>
+<p>Experimentally, we measure the vertical displacement of the membrane thenaks to the FCD method. We measure <img class="math" src="_images/math/0e39eb9e11d3b1fe8c88f1b6b1998bd9307dcd89.svg" alt="\eta(x,y,t)"/>, which is then demodulated at the frequency of agitation of the membrane. From the complex demodulated field <img class="math" src="_images/math/1d5a5e25e3362e58c545e720544a19c71533b95b.svg" alt="\hat{\eta(x,y)}"/> from which we reconstruct the first order Bessel function <img class="math" src="_images/math/f4b4eec00612ebbd5d4087cfd286bd39f9682075.svg" alt="J_0"/> on each point of the space as a function of the radius. <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is measured by fitting a few number of points around the maximum of the function.</p>
+<section id="main-script-to-run">
+<h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Compute the k field
+<span class="go">step = 1</span>
+<span class="go">step_ana = 1</span>
+<span class="go">fitlength = 30</span>
+<span class="go">kfield  = kextraction(c, fitlength, step_ana, step)</span>
+<span class="go">print(&#39;done&#39;)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="usage.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Usage</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="FCD.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Introduction on the Fast Checkerboard Demodulation (FCD)</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, gabriel le doudic
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Introduction to the Kextraction algorithm</a><ul>
+<li><a class="reference internal" href="#main-script-to-run">Main script to run</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

@@ -13,7 +13,7 @@
 
    .. autosummary::
    
-      demodulation_gld_sp
+      demodulation
    
    
 
