@@ -26,7 +26,7 @@ def kextraction(data, fitlength, step_ana):
 
     [nx,ny] = data.shape
     cx = 0 
-    k2 = np.zeros((int((ny/fitlength)/step_ana), int((nx-fitlength)/step_ana)-1))
+    k2 = np.zeros((int((ny-fitlength)/step_ana), int((nx-fitlength)/step_ana)-1))
     phase_locale = np.ones((2*fitlength,2*fitlength))
     signal_local = np.zeros(phase_locale.shape)
     for x0 in range(fitlength, nx-fitlength+1, step_ana):
@@ -45,6 +45,6 @@ def kextraction(data, fitlength, step_ana):
             pp[0]=np.abs(pp[0])
             pp[2]=np.abs(pp[2])
             k2[cy,cx]=np.sqrt(4*pp[0]/pp[2])
-            cy=+1
-        cx =+ 1
+            cy+=1
+        cx += 1
     return k2
