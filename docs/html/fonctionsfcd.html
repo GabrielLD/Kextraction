@@ -215,6 +215,10 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 </section>
 <section id="calculate-the-carriers">
 <h2>Calculate the carriers<a class="headerlink" href="#calculate-the-carriers" title="Permalink to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This functions were written by kaspervn and calls to a bunch of other functions such as “find_peaks”, “peaks”, “ccsgn”</p>
+</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="fcd.calculate_carriers">
 <span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">calculate_carriers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.calculate_carriers" title="Permalink to this definition">#</a></dt>
@@ -229,10 +233,30 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 </dl>
 </dd></dl>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This function was written by kaspervn and calls to a bunch of other functions such as “find_peaks”, “peaks”</p>
-</div>
+</section>
+<section id="apply-a-mask-on-the-images">
+<h2>Apply a mask on the images<a class="headerlink" href="#apply-a-mask-on-the-images" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="fcd.ccsgn">
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">ccsgn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ref_fft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.ccsgn" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="normalize-the-images">
+<h2>Normalize the images<a class="headerlink" href="#normalize-the-images" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="fcd.normalize_image">
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">normalize_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.normalize_image" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="find-coordinates-of-the-peaks-in-fourier-space">
+<h2>Find coordinates of the peaks in Fourier Space<a class="headerlink" href="#find-coordinates-of-the-peaks-in-fourier-space" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="fcd.peak_mask">
+<span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">peak_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.peak_mask" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="finding-peaks-in-the-fourrier-space">
 <h2>Finding peaks in the fourrier space<a class="headerlink" href="#finding-peaks-in-the-fourrier-space" title="Permalink to this heading">#</a></h2>
@@ -426,6 +450,9 @@ H is the distance between the interface and the lenses of the camera.</p>
 <li><a class="reference internal" href="#">Fast Checkerboard Demodulation functions</a><ul>
 <li><a class="reference internal" href="#scripts-used-to-compute-the-fcd">Scripts used to compute the FCD</a></li>
 <li><a class="reference internal" href="#calculate-the-carriers">Calculate the carriers</a></li>
+<li><a class="reference internal" href="#apply-a-mask-on-the-images">Apply a mask on the images</a></li>
+<li><a class="reference internal" href="#normalize-the-images">Normalize the images</a></li>
+<li><a class="reference internal" href="#find-coordinates-of-the-peaks-in-fourier-space">Find coordinates of the peaks in Fourier Space</a></li>
 <li><a class="reference internal" href="#finding-peaks-in-the-fourrier-space">Finding peaks in the fourrier space</a></li>
 <li><a class="reference internal" href="#compute-the-slope-of-the-interface">Compute the slope of the interface</a></li>
 <li><a class="reference internal" href="#compute-the-vertical-displacement-of-the-interface">Compute the vertical displacement of the interface</a></li>

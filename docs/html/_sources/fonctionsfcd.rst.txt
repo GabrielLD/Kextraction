@@ -13,11 +13,27 @@ Scripts used to compute the FCD
 
 Calculate the carriers
 ----------------------
+.. note::
+     This functions were written by kaspervn and calls to a bunch of other functions such as "find_peaks", "peaks", "ccsgn"
 
 .. autofunction:: fcd.calculate_carriers
 
-.. note::
-     This function was written by kaspervn and calls to a bunch of other functions such as "find_peaks", "peaks" 
+
+Apply a mask on the images
+--------------------------
+
+.. autofunction:: fcd.ccsgn
+
+Normalize the images
+--------------------
+
+.. autofunction:: fcd.normalize_image
+
+
+Find coordinates of the peaks in Fourier Space 
+----------------------------------------------
+
+.. autofunction:: fcd.peak_mask
 
 
 Finding peaks in the fourrier space
