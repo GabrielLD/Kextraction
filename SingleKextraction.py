@@ -97,12 +97,14 @@ kfield  = kextraction(c, fitlength, step_ana)
 print('done')
 #%%
 from scipy.ndimage import median_filter
-#median_filter(input, size=None, footprint=None, output=None, mode='reflect', cval=0.0, origin=0)
-
+[ky,kx] = kfield.shape
+KX = np.arange(0,kx)*fx
+KY = np.arange(0,ky)*fx
 fig, ax = plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
-im  = ax.pcolormesh(kfield, vmax =.2)
+im = ax.pcolormesh(KX,KY,median_filter(kfield, size = 30), vmin = 0, vmax = 0.20)
 cbar = fig.colorbar(im, fraction=0.0375, pad=0.02)
-
+cbar.set_label(r'$k(x,y)$')
+plt.ylim([0, 20])
+ax.set_xlabel(r'$x$ (cm)')
+ax.set_ylabel(r'$y$ (cm)')
 #%%
-plt.pcolormesh(median_filter(kfield, ))
- 
