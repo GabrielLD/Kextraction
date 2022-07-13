@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from skimage import io
 from tools import cart2pol
-from display import set_size, vcolors
-vcolor = vcolors(n=7)
+from display import set_size
 # fonctions fcd
 from fcd import *
 from demodulation import demodulation
@@ -58,7 +57,7 @@ print('done')
 idef_collection = io.imread_collection(os.path.join(image_path, "Basler*.tiff"),plugin = "tifffile", conserve_memory=True) #liste des images 
 print('On trouve ...' + str(len(idef_collection)) + ' images')
 print('Computing fast checkerboard demodulation....')
-Nmax = 50
+Nmax = 530
 eta = fcd_hstar_series(idef_collection, carriers,alpha,hp,H, Nmax)
 [nx, ny, nt] = eta.shape
 X = np.arange(0,nx)*fx
@@ -78,15 +77,13 @@ print('Saving....')
 
 #%%
 fig, ax =plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
-im = ax.pcolormesh(np.real(c)*fx)
-#plt.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
-#ax.set_xlabel(r'$x$ (cm)')
-#ax.set_ylabel(r'$y$ (cm)')
-#cbar = fig.colorbar(im, format='%.0e', fraction=0.0375, pad=0.02)
-cbar = fig.colorbar(im, fraction=0.0375, pad=0.02)
-
-#cbar.set_label(r'$\eta(x,y)$ (cm)') 
-# plt.ylim([0, 26])
+im = ax.pcolormesh(X,Y, np.real(c).T*fx)
+plt.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
+ax.set_xlabel(r'$x$ (cm)')
+ax.set_ylabel(r'$y$ (cm)')
+cbar = fig.colorbar(im, format='%.0e', fraction=0.027, pad=0.02)
+cbar.set_label(r'$\eta(x,y)$ (cm)') 
+plt.ylim([0, 26])
 # plt.xlim([0, 33])
 ax.set_aspect('equal', 'box')
 plt.tight_layout()
@@ -99,9 +96,13 @@ fitlength = 6
 kfield  = kextraction(c, fitlength, step_ana)
 print('done')
 #%%
+from scipy.ndimage import median_filter
+#median_filter(input, size=None, footprint=None, output=None, mode='reflect', cval=0.0, origin=0)
+
 fig, ax = plt.subplots(1,1, figsize = set_size(width = 400, subplots = (1,1)))
-im = ax.pcolormesh(kfield, vmax =.2)
+im  = ax.pcolormesh(kfield, vmax =.2)
 cbar = fig.colorbar(im, fraction=0.0375, pad=0.02)
 
-
+#%%
+plt.pcolormesh(median_filter(kfield, ))
  
