@@ -1,6 +1,9 @@
 Introduction to the Kextraction algorithm 
 =========================================
 
+.. note:: 
+    This part of the project is still under checking any contribution to the project is welcome.
+
 Here we describe a method based on the development of the solutions of a 2D linear wave propagation equation in a series of bessel functions.
 
 Let's consider a wave propagating in a medium, which can be described by a dispersion relation :math:`\omega(k)`. Let's consider that the vertical displacement of the medium due to the wave :math:`\eta(x,y,t)` is a solution of the Helmholtz equation.
