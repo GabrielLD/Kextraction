@@ -7,6 +7,7 @@ def kextraction(data, fitlength, step_ana):
     """
     Extracts the wavenum oneach point of the wavefield.
     It calls for the function radialavg2 to reconstruct the Bessel function of first order on each ooint of the 2D matrix data.
+    
     :param: 
    
         * data : complex demodulated field;

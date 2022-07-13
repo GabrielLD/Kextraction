@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Functions written to extract the local wavenumber from a 3D wavefield" href="fonctionskextraction.html" /><link rel="prev" title="Usage" href="usage.html" />
 
     <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
@@ -168,7 +168,6 @@
 <li class="toctree-l2"><a class="reference internal" href="generated/kspace.html">kspace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/fft_inverse_gradient.html">fft_inverse_gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/demodulation.html">demodulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/kextraction.html">kextraction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/radialavg2.html">radialavg2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/tools.html">tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/accum.html">accum</a></li>
@@ -247,14 +246,8 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <span class="sig-prename descclassname"><span class="pre">fcd.</span></span><span class="sig-name descname"><span class="pre">ccsgn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ref_fft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fcd.ccsgn" title="Permalink to this definition">#</a></dt>
 <dd><p>If a mask is needed it returns in real space the reference image with the mask applied to it in the fourier space</p>
 <dl class="field-list simple">
-<dt class="field-odd">Param</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>i_ref_fft : The Fourier Transform of the reference image;</p></li>
-<li><p>mask : mask applied to the imagees.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Returns a an image with the mask.</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a an image with the mask.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -285,11 +278,7 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <dd><p>Normalize the images</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>shape : sizes of the reference image,</p></li>
-<li><p>pos   : location of peaks in the fourier space,</p></li>
-<li><p>r : radius of the peaks</p></li>
-</ul>
+<dd class="field-odd"><p>shape : sizes of the reference image, pos   : location of peaks in the fourier space, r : radius of the peaks</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>result: Pixel coordinates of disk centered around the peaks.</p>
@@ -364,10 +353,8 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <dd><p>Return the slope of the interface between two images</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
-<li><p>carriers is the list of parameters returned by * calculate_carriers function.</p></li>
-</ul>
+<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
+carriers is the list of parameters returned by calculate_carriers function.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the (u,v) fields which correspond to the slopes of the interface in the horizontal and vertical direction.</p>
@@ -385,13 +372,11 @@ Then to comopute the gradient and levation of the interface we adapted the codes
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a deformed one (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
-<li><p>carriers is the list of parameters returned by calculate_carriers function.</p></li>
-<li><p>alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).</p></li>
-<li><p>hp is the distance between the patter and the interface.</p></li>
-<li><p>H is the distance between the interface and the lenses of the camera.</p></li>
-</ul>
+<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
+carriers is the list of parameters returned by calculate_carriers function.
+alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+hp is the distance between the patter and the interface.
+H is the distance between the interface and the lenses of the camera.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the $h(x,y)$ vertical displacement of the interface.</p>
@@ -425,13 +410,11 @@ Huhn, et al. Exp Fluids (2016), 57, 151, <a class="reference external" href="htt
 <dd><p>Return the vertical displacement between the reference image (i_ref) and a sequence iof deformed images (i_def).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Param</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>i_def is an image of the checkerboard pattern deformed by the flow.</p></li>
-<li><p>carriers is the list of parameters returned by calculate_carriers function.</p></li>
-<li><p>alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).</p></li>
-<li><p>hp is the distance between the patter and the interface.</p></li>
-<li><p>H is the distance between the interface and the lenses of the camera.</p></li>
-</ul>
+<dd class="field-odd"><p>i_def is an image of the checkerboard pattern deformed by the flow.
+carriers is the list of parameters returned by calculate_carriers function.
+alpha is the ratio between the optic indices $alpha = 1- nair/nliquid$ pour nair = 1 air optic index et nliquid = 1.33 liquid optic index (eau).
+hp is the distance between the patter and the interface.
+H is the distance between the interface and the lenses of the camera.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>It returns the $h(x,y,t)$ vertical displacement of the interface.</p>

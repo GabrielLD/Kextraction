@@ -14,7 +14,7 @@ Let's consider a wave propagating in a medium, which can be described by a dispe
 Thanks to a corllary of the Graf theorem shows that the solutions of Helmholtz equation can be decomposed as a serie of Bessel functions centered aound a fixed point in space:
 
 .. math::
-    \hat{\eta(r,\theta,\omega)} = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta} 
+    \hat{\eta}(r,\theta,\omega) = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta} 
 
 The integral of :math:`\hat{\eta}` along the orthoradial direction $\theta$ on a cirlce of radius :math:`R` gives: 
 

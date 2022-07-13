@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Usage" href="usage.html" /><link rel="prev" title="Introduction on the Fast Checkerboard Demodulation (FCD)" href="FCD.html" />
 
     <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
@@ -168,7 +168,6 @@
 <li class="toctree-l2"><a class="reference internal" href="generated/kspace.html">kspace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/fft_inverse_gradient.html">fft_inverse_gradient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/demodulation.html">demodulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/kextraction.html">kextraction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/radialavg2.html">radialavg2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/tools.html">tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/accum.html">accum</a></li>
@@ -209,18 +208,12 @@
         <article role="main">
           <section id="introduction-to-the-kextraction-algorithm">
 <h1>Introduction to the Kextraction algorithm<a class="headerlink" href="#introduction-to-the-kextraction-algorithm" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This part of the project is still under checking any contribution to the project is welcome.</p>
+</div>
 <p>Here we describe a method based on the development of the solutions of a 2D linear wave propagation equation in a series of bessel functions.</p>
-<p>Let’s consider a wave propagating on a thin membrane, which can be described by the following dispersion relation:</p>
-<div class="math-wrapper docutils container">
-<div class="math">
-<p><img src="_images/math/a2cd04b9c8012b5da78f62094b6a7828bddbf3f6.svg" alt="\omega^2 = gk + \frac{T}{\rho}k^3 + \frac{D}{\rho}k^5"/></p>
-</div></div>
-<p><img class="math" src="_images/math/16cb1e006199f0853a2dc67ea814446a38beb54e.svg" alt="\omega"/> is the pulsation of the propagative wave, <img class="math" src="_images/math/044fbdfdc70d3d33ffd9a6ffc1a2ed265bb0fa05.svg" alt="g=9.81 N\cdot m^{-1}"/> is the graviational acceleration, <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is the wavenumber associated to the wavelength throught the relation <img class="math" src="_images/math/34c6a3138d867989c45e09f41c3688971b10c11f.svg" alt="k\frac{2\pi}{\lambda}"/>. <img class="math" src="_images/math/e8dea8254118f111b5fb20895b03528c17566f06.svg" alt="T"/> is the tension. <img class="math" src="_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.svg" alt="D"/> is the flexural coefficient which depends on the Young modulus <img class="math" src="_images/math/1815f600df7845409443aed470eac2d449e4ddb0.svg" alt="E"/>, Poisson coefficient <img class="math" src="_images/math/14eb89266154200b9c81dcfc3bd058638fa221bf.svg" alt="\nu"/> and on the thickness of the membrane <img class="math" src="_images/math/4c120f773ab4e1c59ad2bd44aae969ce24dd190a.svg" alt="h"/>. These quantities are linked together through the following equation :</p>
-<div class="math-wrapper docutils container">
-<div class="math">
-<p><img src="_images/math/f40554a2bf7ee386c3bf6baa1bd9ab22f89b19d2.svg" alt="D = \frac{Eh^3}{12\left(1-\nu^2\right)}"/></p>
-</div></div>
-<p>Let’s note <img class="math" src="_images/math/f77fcfbb197c76b4778539c48379057f9d82f857.svg" alt="\eta(x, y, t)"/> the surface elevation of the membrane in the <img class="math" src="_images/math/1b08810e7de8a13493d7668d0ef354eb0a315cfa.svg" alt="(\mathcal{O},x, y)"/> along the time t. The Fourier transform <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> is a solution of the Healmholtz equation.</p>
+<p>Let’s consider a wave propagating in a medium, which can be described by a dispersion relation <img class="math" src="_images/math/298070961717a9aaebc3da06e37403d74c89321d.svg" alt="\omega(k)"/>. Let’s consider that the vertical displacement of the medium due to the wave <img class="math" src="_images/math/0e39eb9e11d3b1fe8c88f1b6b1998bd9307dcd89.svg" alt="\eta(x,y,t)"/> is a solution of the Helmholtz equation.</p>
 <div class="math-wrapper docutils container">
 <div class="math">
 <p><img src="_images/math/b789572df5f7ac84eb5de0cf09b8c9b2297e9a1b.svg" alt="\left(\Delta+k^2(\omega)\right)\hat{\eta} = 0\text{ avec }\hat{\eta}(x,y,\omega) = \displaystyle{\int}_{-\infty}^{+\infty}\eta(x,y,t){\rm e}^{i\omega t}dt`."/></p>
@@ -228,7 +221,7 @@
 <p>Thanks to a corllary of the Graf theorem shows that the solutions of Helmholtz equation can be decomposed as a serie of Bessel functions centered aound a fixed point in space:</p>
 <div class="math-wrapper docutils container">
 <div class="math">
-<p><img src="_images/math/9aef675469582f67a712073cb23d8390defc0396.svg" alt="\hat{\eta(r,\theta,\omega)} = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}"/></p>
+<p><img src="_images/math/632de8964a74743b19f933bace7147ccd684494b.svg" alt="\hat{\eta}(r,\theta,\omega) = \displaystyle{\sum_{n=-\infty}^{+\infty}}a_nJ_n(kr){\rm e}^{in\theta}"/></p>
 </div></div>
 <p>The integral of <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> along the orthoradial direction $theta$ on a cirlce of radius <img class="math" src="_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.svg" alt="R"/> gives:</p>
 <div class="math-wrapper docutils container">
@@ -247,6 +240,16 @@
 <p><img src="_images/math/43c51073effa2634b057da741a104369e397f710.svg" alt="I = \frac{1}{2\pi}a_0J_0(kR) \text{ for } n=0"/></p>
 </div></div>
 <p>Experimentally, we measure the vertical displacement of the membrane thenaks to the FCD method. We measure <img class="math" src="_images/math/0e39eb9e11d3b1fe8c88f1b6b1998bd9307dcd89.svg" alt="\eta(x,y,t)"/>, which is then demodulated at the frequency of agitation of the membrane. From the complex demodulated field <img class="math" src="_images/math/1d5a5e25e3362e58c545e720544a19c71533b95b.svg" alt="\hat{\eta(x,y)}"/> from which we reconstruct the first order Bessel function <img class="math" src="_images/math/f4b4eec00612ebbd5d4087cfd286bd39f9682075.svg" alt="J_0"/> on each point of the space as a function of the radius. <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is measured by fitting a few number of points around the maximum of the function.</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/a2cd04b9c8012b5da78f62094b6a7828bddbf3f6.svg" alt="\omega^2 = gk + \frac{T}{\rho}k^3 + \frac{D}{\rho}k^5"/></p>
+</div></div>
+<p><img class="math" src="_images/math/16cb1e006199f0853a2dc67ea814446a38beb54e.svg" alt="\omega"/> is the pulsation of the propagative wave, <img class="math" src="_images/math/044fbdfdc70d3d33ffd9a6ffc1a2ed265bb0fa05.svg" alt="g=9.81 N\cdot m^{-1}"/> is the graviational acceleration, <img class="math" src="_images/math/9630132210b904754c9ab272b61cb527d12263ca.svg" alt="k"/> is the wavenumber associated to the wavelength throught the relation <img class="math" src="_images/math/34c6a3138d867989c45e09f41c3688971b10c11f.svg" alt="k\frac{2\pi}{\lambda}"/>. <img class="math" src="_images/math/e8dea8254118f111b5fb20895b03528c17566f06.svg" alt="T"/> is the tension. <img class="math" src="_images/math/0fcab9067b50b87e868c4fd70f213a086addb964.svg" alt="D"/> is the flexural coefficient which depends on the Young modulus <img class="math" src="_images/math/1815f600df7845409443aed470eac2d449e4ddb0.svg" alt="E"/>, Poisson coefficient <img class="math" src="_images/math/14eb89266154200b9c81dcfc3bd058638fa221bf.svg" alt="\nu"/> and on the thickness of the membrane <img class="math" src="_images/math/4c120f773ab4e1c59ad2bd44aae969ce24dd190a.svg" alt="h"/>. These quantities are linked together through the following equation :</p>
+<div class="math-wrapper docutils container">
+<div class="math">
+<p><img src="_images/math/f40554a2bf7ee386c3bf6baa1bd9ab22f89b19d2.svg" alt="D = \frac{Eh^3}{12\left(1-\nu^2\right)}"/></p>
+</div></div>
+<p>Let’s note <img class="math" src="_images/math/f77fcfbb197c76b4778539c48379057f9d82f857.svg" alt="\eta(x, y, t)"/> the surface elevation of the membrane in the <img class="math" src="_images/math/1b08810e7de8a13493d7668d0ef354eb0a315cfa.svg" alt="(\mathcal{O},x, y)"/> along the time t. The Fourier transform <img class="math" src="_images/math/0e7017886000a1fa5ce4077473c679b1640ce57f.svg" alt="\hat{\eta}"/> is a solution of the Healmholtz equation.</p>
 <section id="main-script-to-run">
 <h2>Main script to run<a class="headerlink" href="#main-script-to-run" title="Permalink to this heading">#</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Compute the k field

@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Some useful tools" href="tools.html" /><link rel="prev" title="Fast Checkerboard Demodulation functions" href="fonctionsfcd.html" />
 
     <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
@@ -216,18 +216,17 @@
 <dt class="sig sig-object py" id="kextraction.kextraction">
 <span class="sig-prename descclassname"><span class="pre">kextraction.</span></span><span class="sig-name descname"><span class="pre">kextraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitlength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_ana</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kextraction.kextraction" title="Permalink to this definition">#</a></dt>
 <dd><p>Extracts the wavenum oneach point of the wavefield.
-It calls for the function radialavg2 to reconstruct the Bessel function of first order on each ooint of the 2D matrix data.
-:param:</p>
-<blockquote>
-<div><ul class="simple">
+It calls for the function radialavg2 to reconstruct the Bessel function of first order on each ooint of the 2D matrix data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><ul class="simple">
 <li><p>data : complex demodulated field;</p></li>
 <li><p>fitelength : resolution of the reconstructed bessel function;</p></li>
 <li><p>step_ana : step of analysis.</p></li>
 </ul>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Return k the wavenum field</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return k the wavenum field</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">step_ana</span> <span class="o">=</span> <span class="mi">1</span>
