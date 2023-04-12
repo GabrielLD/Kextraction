@@ -6,11 +6,11 @@
 Kextraction documentation
 =======================================
 
-   This project is under active development with the aim to help study the wave interaction and frature of the MIZ in the arctic pole. 
+   This project is under active development with the aim to help study the wave interaction and fracture of the MIZ in the arctic pole. 
    
    The purpose of these algorithms is to measure the amplitudes of a wave propagating in a medium and to extract the local wavenumber k from the waves. 
    
-   The algorithms are written in Python, and are inspired on three references. The paper from [Wildeman2018]_ for the Fast Checkerboard Demodulation method. The paper from [Przadka2013]_ in which a method to extract the wavenumber is described. And the Github from [kaspervn]_.
+   The algorithms are written in Python, and are inspired by three references. The paper from [Wildeman2018]_ for the Fast Checkerboard Demodulation method. The paper from [Przadka2013]_ in which a method to extract the wavenumber is described. And the Github from [kaspervn]_.
    
 
    * To use this project, check out the :doc:`usage` section for further information.
